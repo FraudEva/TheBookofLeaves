@@ -116,7 +116,9 @@ public class VmAllocationPolicySimple extends VmAllocationPolicy {
 	public void deallocateHostForVm(Vm vm) {
 		Host host = getVmTable().remove(vm.getUid());
 		int idx = getHostList().indexOf(host);
-		int pes = getUsedPes().remove(vm.getUid());
+                String uid = vm.getUid();
+                Map<String,Integer> usedPes = getUsedPes();
+		int pes = usedPes.remove(uid);
 		if (host != null) {
 			host.vmDestroy(vm);
 			getFreePes().set(idx, getFreePes().get(idx) + pes);
