@@ -55,7 +55,7 @@ public class ProveedorDeServicio extends Datacenter{
  
     }
     
-    public static ProveedorDeServicio createProveedorServicio(String nombre,
+    public static ProveedorDeServicio crearProveedorServicio(String nombre,
     Double gananciaPreferida,
     Double ganaciaMinima,
     Double probabilidadDeEvento,

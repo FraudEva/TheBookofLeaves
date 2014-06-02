@@ -16,16 +16,10 @@ import ec.espol.tesis.simulacion.mercado.OfertaPublicada;
 import ec.espol.tesis.simulacion.util.Util;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.cloudbus.cloudsim.Cloudlet;
-import org.cloudbus.cloudsim.CloudletSchedulerTimeShared;
-import org.cloudbus.cloudsim.Datacenter;
-import org.cloudbus.cloudsim.UtilizationModel;
-import org.cloudbus.cloudsim.UtilizationModelFull;
-import org.cloudbus.cloudsim.Vm;
 import org.cloudbus.cloudsim.core.CloudSim;
 
 /**
@@ -49,25 +43,31 @@ public class Simulador {
             // Second step: Create Datacenters (ProveedorDeServicio)
             // Datacenters are the resource providers in CloudSim. We need at
             // list one of them to run a CloudSim simulation
-            ProveedorDeServicio proveedorA = ProveedorDeServicio.createProveedorServicio("Proveedor_A",
+            /*String nombre,
+            Double gananciaPreferida,
+            Double ganaciaMinima,
+            Double probabilidadDeEvento,
+            Integer mipsPorNucleo,
+            Integer reputacionInicial*/
+            ProveedorDeServicio proveedorA = ProveedorDeServicio.crearProveedorServicio("Proveedor_A",
                                                                                         0.36, 
                                                                                         0.30,
                                                                                         0.98,
                                                                                         250,
                                                                                         ProveedorDeServicio.REPUTACION_MEDIA);
-            ProveedorDeServicio proveedorB = ProveedorDeServicio.createProveedorServicio("Proveedor_B",
+            ProveedorDeServicio proveedorB = ProveedorDeServicio.crearProveedorServicio("Proveedor_B",
                                                                                         0.35, 
                                                                                         0.31,
                                                                                         0.80,
                                                                                         250,
                                                                                         ProveedorDeServicio.REPUTACION_MEDIA);
-            ProveedorDeServicio proveedorC = ProveedorDeServicio.createProveedorServicio("Proveedor_C",
+            ProveedorDeServicio proveedorC = ProveedorDeServicio.crearProveedorServicio("Proveedor_C",
                                                                                         0.34, 
                                                                                         0.30,
                                                                                         0.68,
                                                                                         250,
                                                                                         ProveedorDeServicio.REPUTACION_MEDIA);
-            ProveedorDeServicio proveedorD = ProveedorDeServicio.createProveedorServicio("Proveedor_D",
+            ProveedorDeServicio proveedorD = ProveedorDeServicio.crearProveedorServicio("Proveedor_D",
                                                                                         0.35, 
                                                                                         0.20,
                                                                                         0.95,
