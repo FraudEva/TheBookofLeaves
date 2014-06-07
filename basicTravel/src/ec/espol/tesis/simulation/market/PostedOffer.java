@@ -8,26 +8,23 @@ package ec.espol.tesis.simulation.market;
 
 import ec.espol.tesis.simulation.entities.Provider;
 import ec.espol.tesis.simulation.entities.SLA;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
  *
  * @author Usuario
  */
-public class PostedOffer implements Subasta {
+public class PostedOffer extends MarketMechanism{
     public static final String Nombre = "Posted Offer";
-    private ArrayList<Provider> providerList;
-    
     public PostedOffer(){
-        providerList = new ArrayList<Provider>();
+        super();
     }
 
     @Override
     public Provider searchBestProvider(long mips, double referencePrice, Integer minimumReputationRequired, SLA sla) {
         Provider bestProvider = null;
         double lowestBid = -1;
-        List<Provider> observers = MarketMechanism.getProviderList();
+        List<Provider> observers = this.getProviderList();
         for(Provider provider : observers)
         {
             if(provider.getReputation()>= minimumReputationRequired)

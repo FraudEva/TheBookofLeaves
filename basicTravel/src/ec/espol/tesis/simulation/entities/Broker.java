@@ -66,7 +66,7 @@ public class Broker extends DatacenterBroker {
             setDatacenterRequestedIdsList(new ArrayList<Integer>());
             //Seleccionar el mejor proveedor
             Double preferredPriceToPay = Market.estimarCostoMI(totalMips)*(1+maximumValueByMip);
-            Provider bestProvider = MarketMechanism.getSubasta().searchBestProvider(totalMips, preferredPriceToPay, minimumReputation, sla);
+            Provider bestProvider = Market.mecanismo.searchBestProvider(totalMips, preferredPriceToPay, minimumReputation, sla);
             if(bestProvider!=null)
             {
                 createVmsInDatacenter(bestProvider.getId());
@@ -96,7 +96,7 @@ public class Broker extends DatacenterBroker {
             if(getVmsRequested() == getVmsAcks()){
                 //Seleccionar el mejor proveedor
                 Double preferredPriceToPay = Market.estimarCostoMI(totalMips)*(maximumValueByMip);
-                Provider bestProvider = MarketMechanism.getSubasta().searchBestProvider(totalMips, preferredPriceToPay, minimumReputation, sla);
+                Provider bestProvider = Market.mecanismo.searchBestProvider(totalMips, preferredPriceToPay, minimumReputation, sla);
                 if(bestProvider!=null){
                     createVmsInDatacenter(bestProvider.getId());
                     return;

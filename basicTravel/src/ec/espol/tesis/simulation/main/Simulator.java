@@ -11,7 +11,7 @@ import ec.espol.tesis.simulation.entities.Broker;
 import ec.espol.tesis.simulation.entities.Provider;
 import ec.espol.tesis.simulation.entities.SLA;
 import ec.espol.tesis.simulation.entities.Service;
-import ec.espol.tesis.simulation.market.Subasta;
+import ec.espol.tesis.simulation.market.Market;
 import ec.espol.tesis.simulation.market.MarketMechanism;
 import ec.espol.tesis.simulation.market.PostedOffer;
 import ec.espol.tesis.simulation.util.Util;
@@ -74,12 +74,13 @@ public class Simulator {
                                                                                         0.95,
                                                                                         250,
                                                                                         Provider.MEDIUM_REPUTATION);
-            Subasta mecanismo = new PostedOffer();
-            MarketMechanism.inicializarMecanismoSubasta(mecanismo);
-            MarketMechanism.agregarProveedorServicio(proveedorA);
-            MarketMechanism.agregarProveedorServicio(proveedorB);
-            MarketMechanism.agregarProveedorServicio(proveedorC);
-            MarketMechanism.agregarProveedorServicio(proveedorD);
+            MarketMechanism mecanismo = new PostedOffer();
+            mecanismo.addProviderToList(proveedorA);
+            mecanismo.addProviderToList(proveedorB);
+            mecanismo.addProviderToList(proveedorC);
+            mecanismo.addProviderToList(proveedorD);
+            
+            Market.mecanismo = mecanismo;
             
 //            Integer id, 
 //            Integer numeroDeUsuarios, 
@@ -130,7 +131,7 @@ public class Simulator {
                 Util.printCloudletList(listaCloudlet, listaAgenteBroker);  
             }
             //Print the debt of each user to each datacenter
-            Util.printSellerAgentInfo(MarketMechanism.getProviderList());/*allSellerAgents*/;
+            Util.printSellerAgentInfo(mecanismo.getProviderList());/*allSellerAgents*/;
          } catch (Exception ex) {
             Logger.getLogger(Simulator.class.getName()).log(Level.SEVERE, null, ex);
         }

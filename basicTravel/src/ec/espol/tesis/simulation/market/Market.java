@@ -13,7 +13,8 @@ package ec.espol.tesis.simulation.market;
 public class Market {
 
     private static final Double COSTO_POR_MI = 1.0;
-
+    public static MarketMechanism mecanismo;
+    
     public static Double estimarCostoMI(Long mi){
         return COSTO_POR_MI*mi;
     }

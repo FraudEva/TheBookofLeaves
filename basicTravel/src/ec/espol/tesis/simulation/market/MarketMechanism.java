@@ -7,42 +7,31 @@
 package ec.espol.tesis.simulation.market;
 
 import ec.espol.tesis.simulation.entities.Provider;
+import ec.espol.tesis.simulation.entities.SLA;
 import java.util.ArrayList;
-
 /**
  *
  * @author Usuario
  */
-public class MarketMechanism {
-    public static ArrayList<Provider> providerList;
-    private static Subasta subasta;
-    
-    public static void agregarProveedorServicio(Provider provider){
-        providerList.add(provider);
-    }
-    
-    
-    public static void inicializarMecanismoSubasta(Subasta mecanismoSubasta){
-        providerList = new ArrayList<Provider>();
-        subasta = mecanismoSubasta;
-    }
+public abstract class MarketMechanism {
+    private ArrayList<Provider> providerList;
 
-    public static ArrayList<Provider> getProviderList() {
+    public MarketMechanism() {
+        providerList = new ArrayList<Provider>();
+    }
+    
+    
+    public abstract Provider searchBestProvider(long mips, double precioDispuestoAPagar, Integer reputacionMinimaExijida, SLA sla);
+    
+    public ArrayList<Provider> getProviderList() {
         return providerList;
     }
 
-    public static void setProviderList(ArrayList<Provider> providerList) {
-        MarketMechanism.providerList = providerList;
-    }
-
-    public static Subasta getSubasta() {
-        return subasta;
-    }
-
-    public static void setSubasta(Subasta subasta) {
-        MarketMechanism.subasta = subasta;
+    public void setProviderList(ArrayList<Provider> providerList) {
+        this.providerList = providerList;
     }
     
-    
-    
-}
+    public void addProviderToList(Provider provider){
+        providerList.add(provider);
+    }
+ }
