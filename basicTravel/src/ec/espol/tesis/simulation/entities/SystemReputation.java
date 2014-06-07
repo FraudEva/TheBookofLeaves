@@ -4,14 +4,12 @@
  * and open the template in the editor.
  */
 
-package ec.espol.tesis.simulacion.ui;
-
-import javax.swing.JPanel;
+package ec.espol.tesis.simulation.entities;
 
 /**
  *
  * @author Usuario
  */
-public class main extends JPanel{
+public class SystemReputation {
     
 }

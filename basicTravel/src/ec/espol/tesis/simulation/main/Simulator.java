@@ -4,16 +4,17 @@
  * and open the template in the editor.
  */
 
-package ec.espol.tesis.simulacion.principal;
+package ec.espol.tesis.simulation.main;
 
-import ec.espol.tesis.simulacion.entidades.Usuario;
-import ec.espol.tesis.simulacion.entidades.AgenteBroker;
-import ec.espol.tesis.simulacion.entidades.ProveedorDeServicio;
-import ec.espol.tesis.simulacion.entidades.SLA;
-import ec.espol.tesis.simulacion.mercado.Subasta;
-import ec.espol.tesis.simulacion.mercado.MecanismoMercado;
-import ec.espol.tesis.simulacion.mercado.OfertaPublicada;
-import ec.espol.tesis.simulacion.util.Util;
+import ec.espol.tesis.simulation.entities.User;
+import ec.espol.tesis.simulation.entities.Broker;
+import ec.espol.tesis.simulation.entities.Provider;
+import ec.espol.tesis.simulation.entities.SLA;
+import ec.espol.tesis.simulation.entities.Service;
+import ec.espol.tesis.simulation.market.Subasta;
+import ec.espol.tesis.simulation.market.MarketMechanism;
+import ec.espol.tesis.simulation.market.PostedOffer;
+import ec.espol.tesis.simulation.util.Util;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -24,11 +25,11 @@ import org.cloudbus.cloudsim.core.CloudSim;
 
 /**
  *
- * @author Usuario
+ * @author User
  */
-public class Simulador {
+public class Simulator {
     public static void main(String[] args){
-        Util.imprimirMensaje("Empezando la simulación");
+        Util.printMessage("Empezando la simulación");
         try 
         {
             // First step: Initialize the CloudSim package. It should be called
@@ -40,7 +41,7 @@ public class Simulador {
             // Initialize the CloudSim library
             CloudSim.init(num_user, calendar, trace_flag);
 
-            // Second step: Create Datacenters (ProveedorDeServicio)
+            // Second step: Create Datacenters (Provider)
             // Datacenters are the resource providers in CloudSim. We need at
             // list one of them to run a CloudSim simulation
             /*String nombre,
@@ -49,36 +50,36 @@ public class Simulador {
             Double probabilidadDeEvento,
             Integer mipsPorNucleo,
             Integer reputacionInicial*/
-            ProveedorDeServicio proveedorA = ProveedorDeServicio.crearProveedorServicio("Proveedor_A",
+            Provider proveedorA = Provider.createProvider("Proveedor_A",
                                                                                         0.36, 
                                                                                         0.30,
                                                                                         0.98,
                                                                                         250,
-                                                                                        ProveedorDeServicio.REPUTACION_MEDIA);
-            ProveedorDeServicio proveedorB = ProveedorDeServicio.crearProveedorServicio("Proveedor_B",
+                                                                                        Provider.MEDIUM_REPUTATION);
+            Provider proveedorB = Provider.createProvider("Proveedor_B",
                                                                                         0.35, 
                                                                                         0.31,
                                                                                         0.80,
                                                                                         250,
-                                                                                        ProveedorDeServicio.REPUTACION_MEDIA);
-            ProveedorDeServicio proveedorC = ProveedorDeServicio.crearProveedorServicio("Proveedor_C",
+                                                                                        Provider.MEDIUM_REPUTATION);
+            Provider proveedorC = Provider.createProvider("Proveedor_C",
                                                                                         0.34, 
                                                                                         0.30,
                                                                                         0.68,
                                                                                         250,
-                                                                                        ProveedorDeServicio.REPUTACION_MEDIA);
-            ProveedorDeServicio proveedorD = ProveedorDeServicio.crearProveedorServicio("Proveedor_D",
+                                                                                        Provider.MEDIUM_REPUTATION);
+            Provider proveedorD = Provider.createProvider("Proveedor_D",
                                                                                         0.35, 
                                                                                         0.20,
                                                                                         0.95,
                                                                                         250,
-                                                                                        ProveedorDeServicio.REPUTACION_MEDIA);
-            Subasta mecanismo = new OfertaPublicada();
-            MecanismoMercado.inicializarMecanismoSubasta(mecanismo);
-            MecanismoMercado.agregarProveedorServicio(proveedorA);
-            MecanismoMercado.agregarProveedorServicio(proveedorB);
-            MecanismoMercado.agregarProveedorServicio(proveedorC);
-            MecanismoMercado.agregarProveedorServicio(proveedorD);
+                                                                                        Provider.MEDIUM_REPUTATION);
+            Subasta mecanismo = new PostedOffer();
+            MarketMechanism.inicializarMecanismoSubasta(mecanismo);
+            MarketMechanism.agregarProveedorServicio(proveedorA);
+            MarketMechanism.agregarProveedorServicio(proveedorB);
+            MarketMechanism.agregarProveedorServicio(proveedorC);
+            MarketMechanism.agregarProveedorServicio(proveedorD);
             
 //            Integer id, 
 //            Integer numeroDeUsuarios, 
@@ -92,23 +93,23 @@ public class Simulador {
                  
             // Third step: Create Broker
             //Fourth step: Create VMs and Cloudlets and send them to broker
-            Usuario helper1 = new Usuario(1,2,0.0,4000,250,1,0,0.4,new SLA());
-            helper1.inicializarAgentesBrokers();
+            User user1 = new User(1,2);
+            user1.makeOrder(new Service(0.0,4000,250,1,0,0.4),new SLA());
             
-            Usuario helper2 = new Usuario(2,2,20.0,4000,250,1,2,0.4,new SLA());
-            helper2.inicializarAgentesBrokers();
+            User user2 = new User(2,2);
+            user2.makeOrder(new Service(20.0,4000,250,1,2,0.4),new SLA());
             
-            Usuario helper3 = new Usuario(3,2,40.0,4000,250,1,4,0.4,new SLA());
-            helper3.inicializarAgentesBrokers();
+            User user3 = new User(3,2);
+            user3.makeOrder( new Service(40.0,4000,250,1,4,0.4),new SLA());
             
-            Usuario helper4 = new Usuario(4,2,60.0,4000,250,1,6,0.4,new SLA());
-            helper4.inicializarAgentesBrokers();
+            User user4 = new User(4,2);
+            user4.makeOrder( new Service(60.0,4000,250,1,6,0.4),new SLA());
             
-            List<AgenteBroker> listaAgenteBroker = new ArrayList<AgenteBroker>();
-            listaAgenteBroker.addAll(helper1.getListaAgentesBrokers());
-            listaAgenteBroker.addAll(helper2.getListaAgentesBrokers());
-            listaAgenteBroker.addAll(helper3.getListaAgentesBrokers());
-            listaAgenteBroker.addAll(helper4.getListaAgentesBrokers());
+            List<Broker> listaAgenteBroker = new ArrayList<Broker>();
+            listaAgenteBroker.addAll(user1.getListaAgentesBrokers());
+            listaAgenteBroker.addAll(user2.getListaAgentesBrokers());
+            listaAgenteBroker.addAll(user3.getListaAgentesBrokers());
+            listaAgenteBroker.addAll(user4.getListaAgentesBrokers());
             
             // Fifth step: Starts the simulation
             CloudSim.startSimulation();
@@ -119,7 +120,7 @@ public class Simulador {
             
             CloudSim.stopSimulation();
             
-            for(AgenteBroker agenteBroker: listaAgenteBroker ){
+            for(Broker agenteBroker : listaAgenteBroker){
                 listaCloudletRecibidos.addAll(agenteBroker.getCloudletReceivedList());
                 listaCloudlet.addAll(agenteBroker.getCloudletList());
             }
@@ -129,9 +130,9 @@ public class Simulador {
                 Util.printCloudletList(listaCloudlet, listaAgenteBroker);  
             }
             //Print the debt of each user to each datacenter
-            Util.printSellerAgentInfo(MecanismoMercado.getListaProveedores());/*allSellerAgents*/;
+            Util.printSellerAgentInfo(MarketMechanism.getProviderList());/*allSellerAgents*/;
          } catch (Exception ex) {
-            Logger.getLogger(Simulador.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Simulator.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }

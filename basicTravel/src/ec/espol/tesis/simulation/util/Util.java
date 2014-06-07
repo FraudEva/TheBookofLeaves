@@ -4,10 +4,10 @@
  * and open the template in the editor.
  */
 
-package ec.espol.tesis.simulacion.util;
+package ec.espol.tesis.simulation.util;
 
-import ec.espol.tesis.simulacion.entidades.AgenteBroker;
-import ec.espol.tesis.simulacion.entidades.ProveedorDeServicio;
+import ec.espol.tesis.simulation.entities.Broker;
+import ec.espol.tesis.simulation.entities.Provider;
 import java.text.DecimalFormat;
 import java.util.List;
 import org.cloudbus.cloudsim.Cloudlet;
@@ -18,11 +18,11 @@ import org.cloudbus.cloudsim.Log;
  * @author Usuario
  */
 public class Util {
-    public static void imprimirMensaje(String mensaje){
+    public static void printMessage(String mensaje){
         Log.printLine(mensaje);
     }
     
-    public static void printCloudletList(List<Cloudlet> list, List<AgenteBroker> buyerAgents)
+    public static void printCloudletList(List<Cloudlet> list, List<Broker> buyerAgents)
     {
         int size = list.size();        
         Cloudlet job;
@@ -53,11 +53,11 @@ public class Util {
             Log.print(job.getCloudletStatusString());
             //Log.print("SUCCESS");
             int tries = 0;
-            for(AgenteBroker buyerAgent : buyerAgents)
+            for(Broker buyerAgent : buyerAgents)
             {
                 if(buyerAgent.getId() == job.getUserId())
                 {
-                    tries = buyerAgent.consultarNumeroDeIntentos();
+                    tries = buyerAgent.getNumberOfTries();
                     break;
                 }
             }
@@ -81,11 +81,11 @@ public class Util {
      * Prints the SellerAgent's information after the simulation
      * @param sellerAgents
      */
-    public static void printSellerAgentInfo(List<ProveedorDeServicio> sellerAgents)
+    public static void printSellerAgentInfo(List<Provider> sellerAgents)
     {
-        for (ProveedorDeServicio sellerAgent : sellerAgents)
+        for (Provider sellerAgent : sellerAgents)
         {
-            Log.printLine(sellerAgent.getName() +" reputation is "+sellerAgent.getReputacion());
+            Log.printLine(sellerAgent.getName() +" reputation is "+sellerAgent.getReputation());
             sellerAgent.printDebts();
         }
     }

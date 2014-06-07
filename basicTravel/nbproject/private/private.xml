@@ -4,22 +4,8 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Usuario/Documents/GitHub/TheBookofLeaves/basicTravel/src/ec/espol/tesis/simulacion/util/Util.java</file>
-            <file>file:/C:/Users/Usuario/Documents/GitHub/TheBookofLeaves/basicTravel/src/org/cloudbus/cloudsim/Datacenter.java</file>
-            <file>file:/C:/Users/Usuario/Documents/GitHub/TheBookofLeaves/basicTravel/src/ec/espol/tesis/simulacion/entidades/Usuario.java</file>
-            <file>file:/C:/Users/Usuario/Documents/GitHub/TheBookofLeaves/basicTravel/src/ec/espol/tesis/simulacion/entidades/RecursoHost.java</file>
-            <file>file:/C:/Users/Usuario/Documents/GitHub/TheBookofLeaves/basicTravel/src/ec/espol/tesis/simulacion/mercado/Subasta.java</file>
-            <file>file:/C:/Users/Usuario/Documents/GitHub/TheBookofLeaves/basicTravel/src/ec/espol/tesis/simulacion/mercado/OfertaPublicada.java</file>
-            <file>file:/C:/Users/Usuario/Documents/GitHub/TheBookofLeaves/basicTravel/src/org/cloudbus/cloudsim/VmAllocationPolicySimple.java</file>
-            <file>file:/C:/Users/Usuario/Documents/GitHub/TheBookofLeaves/basicTravel/src/ec/espol/tesis/simulacion/mercado/MecanismoMercado.java</file>
-            <file>file:/C:/Users/Usuario/Documents/GitHub/TheBookofLeaves/basicTravel/src/ec/espol/tesis/simulacion/principal/Simulador.java</file>
-            <file>file:/C:/Users/Usuario/Documents/GitHub/TheBookofLeaves/basicTravel/test/ec/espol/tesis/simulacion/mercado/OfertaPublicadaTest.java</file>
-            <file>file:/C:/Users/Usuario/Documents/GitHub/TheBookofLeaves/basicTravel/src/ec/espol/tesis/simulacion/entidades/AgenteBroker.java</file>
-            <file>file:/C:/Users/Usuario/Documents/GitHub/TheBookofLeaves/basicTravel/src/ec/espol/tesis/simulacion/ui/main.java</file>
-            <file>file:/C:/Users/Usuario/Documents/GitHub/TheBookofLeaves/basicTravel/src/ec/espol/tesis/simulacion/entidades/ProveedorDeServicio.java</file>
-            <file>file:/C:/Users/Usuario/Documents/GitHub/TheBookofLeaves/basicTravel/src/ec/espol/tesis/simulacion/mercado/Mercado.java</file>
-            <file>file:/C:/Users/Usuario/Documents/GitHub/TheBookofLeaves/basicTravel/src/ec/espol/tesis/simulacion/entidades/SLA.java</file>
-            <file>file:/C:/Users/Usuario/Documents/GitHub/TheBookofLeaves/basicTravel/test/ec/espol/tesis/simulacion/principal/SimuladorTest.java</file>
+            <file>file:/C:/Users/Usuario/Documents/GitHub/TheBookofLeaves/basicTravel/src/ec/espol/tesis/simulation/entities/Provider.java</file>
+            <file>file:/C:/Users/Usuario/Documents/GitHub/TheBookofLeaves/basicTravel/src/ec/espol/tesis/simulation/entities/Broker.java</file>
         </group>
     </open-files>
 </project-private>

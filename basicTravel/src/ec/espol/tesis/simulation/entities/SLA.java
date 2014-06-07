@@ -4,17 +4,12 @@
  * and open the template in the editor.
  */
 
-package ec.espol.tesis.simulacion.mercado;
+package ec.espol.tesis.simulation.entities;
 
 /**
  *
  * @author Usuario
  */
-public class Mercado {
-
-    private static final Double COSTO_POR_MI = 1.0;
-
-    public static Double estimarCostoMI(Long mi){
-        return COSTO_POR_MI*mi;
-    }
+public class SLA {
+    
 }
