@@ -9,7 +9,7 @@ package ec.espol.tesis.simulation.market;
 import ec.espol.tesis.simulation.entities.Broker;
 import ec.espol.tesis.simulation.entities.Provider;
 import ec.espol.tesis.simulation.entities.SLA;
-import ec.espol.tesis.simulation.entities.SystemReputation;
+import ec.espol.tesis.simulation.entities.ReputationSystem;
 import java.util.List;
 
 /**
@@ -51,6 +51,6 @@ public class PostedOffer extends MarketMechanism{
     }
     
     public double getReputation(Provider p){
-        return SystemReputation.getReputation(p);
+        return ReputationSystem.getReputation(p);
     }
 }

@@ -10,7 +10,7 @@ package ec.espol.tesis.simulation.entities;
  *
  * @author Usuario
  */
-public class SystemReputation {
+public class ReputationSystem {
     public static double getReputation(Provider p){
         return 1.0;
     }
