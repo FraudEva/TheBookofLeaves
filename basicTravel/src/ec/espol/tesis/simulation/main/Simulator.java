@@ -75,10 +75,10 @@ public class Simulator {
                                                                                         250,
                                                                                         Provider.MEDIUM_REPUTATION);
             MarketMechanism mecanismo = new PostedOffer();
-            mecanismo.addProviderToList(proveedorA);
-            mecanismo.addProviderToList(proveedorB);
-            mecanismo.addProviderToList(proveedorC);
-            mecanismo.addProviderToList(proveedorD);
+            Broker.addProviderToList(proveedorA);
+            Broker.addProviderToList(proveedorB);
+            Broker.addProviderToList(proveedorC);
+            Broker.addProviderToList(proveedorD);
             
             Market.mecanismo = mecanismo;
             
@@ -131,7 +131,7 @@ public class Simulator {
                 Util.printCloudletList(listaCloudlet, listaAgenteBroker);  
             }
             //Print the debt of each user to each datacenter
-            Util.printSellerAgentInfo(mecanismo.getProviderList());/*allSellerAgents*/;
+            Util.printSellerAgentInfo(Broker.getProviderList());/*allSellerAgents*/;
          } catch (Exception ex) {
             Logger.getLogger(Simulator.class.getName()).log(Level.SEVERE, null, ex);
         }

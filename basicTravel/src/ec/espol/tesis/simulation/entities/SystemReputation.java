@@ -11,5 +11,7 @@ package ec.espol.tesis.simulation.entities;
  * @author Usuario
  */
 public class SystemReputation {
-    
+    public static double getReputation(Provider p){
+        return 1.0;
+    }
 }

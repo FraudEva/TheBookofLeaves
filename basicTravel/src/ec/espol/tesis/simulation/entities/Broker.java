@@ -25,7 +25,9 @@ import org.cloudbus.cloudsim.lists.VmList;
  * @author Usuario
  */
 public class Broker extends DatacenterBroker {
-
+    
+    public static  ArrayList<Provider> providerList = new ArrayList<Provider>();
+    
     private Double maximumValueByMip;
     private Double startTime;
     private Integer minimumReputation;
@@ -33,16 +35,16 @@ public class Broker extends DatacenterBroker {
     private long totalMips;
     
     
-    public Broker(String name, Double startTime, SLA sla, Double maximumValueByMip) throws Exception {
+    public Broker(String name, Double startTime, Double maximumValueByMip) throws Exception {
         super(name);
         this.startTime = startTime;
         this.minimumReputation = 1;
-        this.sla = sla; 
         this.totalMips = 0;
         this.maximumValueByMip = maximumValueByMip;
     }
 
     public Broker submitService(Service service, SLA sla, int id){
+         this.sla = sla;
          List<Vm> listaMaquinasVirtuales = MarketHelper.createVM(this.getId(),1,service.getShift()+id, service.getMipsPerVm());
          List<Cloudlet> listaCloudlets = MarketHelper.createCloudLet(this.getId(),1,service.getShift()+id,service.getMiPerCloudlet());
          this.submitVmList(listaMaquinasVirtuales);
@@ -139,5 +141,19 @@ public class Broker extends DatacenterBroker {
     {
         return getDatacenterRequestedIdsList().size();
     }
+    
+    public static void addProviderToList(Provider provider){
+        providerList.add(provider);
+    }
+
+    public static ArrayList<Provider> getProviderList() {
+        return providerList;
+    }
+
+    public static void setProviderList(ArrayList<Provider> providerList) {
+        Broker.providerList = providerList;
+    }
+    
+    
     
 }

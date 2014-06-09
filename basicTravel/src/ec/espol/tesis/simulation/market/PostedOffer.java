@@ -6,8 +6,10 @@
 
 package ec.espol.tesis.simulation.market;
 
+import ec.espol.tesis.simulation.entities.Broker;
 import ec.espol.tesis.simulation.entities.Provider;
 import ec.espol.tesis.simulation.entities.SLA;
+import ec.espol.tesis.simulation.entities.SystemReputation;
 import java.util.List;
 
 /**
@@ -24,13 +26,14 @@ public class PostedOffer extends MarketMechanism{
     public Provider searchBestProvider(long mips, double referencePrice, Integer minimumReputationRequired, SLA sla) {
         Provider bestProvider = null;
         double lowestBid = -1;
-        List<Provider> observers = this.getProviderList();
+        List<Provider> observers = Broker.getProviderList();
         for(Provider provider : observers)
         {
             if(provider.getReputation()>= minimumReputationRequired)
             {
                 double bid = provider.makeOffer(mips,referencePrice);
-                double bidPonder = bid*1;//Peso de sistema de reputacion
+                double reputation = getReputation(provider);
+                double bidPonder = bid*ponderPriceWithReputation(bid, reputation);//Peso de sistema de reputacion
                 if(bid > 0 && lowestBid == -1){
                     lowestBid = bidPonder;
                     bestProvider = provider;
@@ -43,4 +46,11 @@ public class PostedOffer extends MarketMechanism{
         return bestProvider;
     }
     
+    public double ponderPriceWithReputation(double price, double reputation){
+        return price*reputation;
+    }
+    
+    public double getReputation(Provider p){
+        return SystemReputation.getReputation(p);
+    }
 }

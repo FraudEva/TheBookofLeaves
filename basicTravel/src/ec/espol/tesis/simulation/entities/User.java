@@ -33,7 +33,7 @@ public class User {
         this.sla = sla;
         brokerList = new ArrayList<Broker>();
         for( int i=0; i<numberOfRequeriments ; i++){
-            Broker broker = new Broker("AgenteBroker_"+id+"."+i,this.service.getScheduledTime() , sla, this.service.getMaximumProfit());
+            Broker broker = new Broker("AgenteBroker_"+id+"."+i,this.service.getScheduledTime(),this.service.getMaximumProfit());
             broker.submitService(service, sla, id);
             brokerList.add(broker);
         }
