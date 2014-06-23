@@ -27,7 +27,8 @@ public class User {
     }
     
     
-    
+    /*Definir un solo broker para uno o mas usuarios con varios requerimientos. El broker es el mismo*
+	los requerimientos y los usuarios pueden variar*/
     public void makeOrder(Service service, SLA sla) throws Exception{
         this.service = service;
         this.sla = sla;
