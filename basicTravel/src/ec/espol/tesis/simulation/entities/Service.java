@@ -10,30 +10,33 @@ package ec.espol.tesis.simulation.entities;
  *
  * @author José Luis
  */
-public class Service{
+public class Service {
     private Double      scheduledTime;
-    private Integer     miPerCloudlet;
+    private Integer     mipsPerCloudlet;
     private Integer     mipsPerVm;
-    private Integer     minimumReputation;
     private Integer     shift;
     private Double      maximumProfit;
 
     public Service() {
+        this.scheduledTime = 0.0;
+        this.mipsPerCloudlet= 0;
+        this.mipsPerVm= 0;
+        this.shift= 0;
+        this.maximumProfit= 0.0;
     }
 
     
     public Service(Double scheduledTime,
-            Integer miPerCloudlet,
-            Integer mipsPerVm,
-            Integer minimumReputation,
-            Integer shift,
-            Double maximumProfit) {
-        this.scheduledTime = scheduledTime;
-        this.miPerCloudlet = miPerCloudlet;
-        this.mipsPerVm = mipsPerVm;
-        this.minimumReputation = minimumReputation;
-        this.shift = shift;
-        this.maximumProfit = maximumProfit;
+        Integer mipsPerCloudlet,
+        Integer mipsPerVm,
+        Integer minimumReputation,
+        Integer shift,
+        Double maximumProfit) {
+            this.scheduledTime = scheduledTime;
+            this.mipsPerCloudlet = mipsPerCloudlet;
+            this.mipsPerVm = mipsPerVm;
+            this.shift = shift;
+            this.maximumProfit = maximumProfit;
     }
 
     public Double getScheduledTime() {
@@ -45,11 +48,11 @@ public class Service{
     }
 
     public Integer getMiPerCloudlet() {
-        return miPerCloudlet;
+        return mipsPerCloudlet;
     }
 
-    public void setMiPerCloudlet(Integer miPerCloudlet) {
-        this.miPerCloudlet = miPerCloudlet;
+    public void setMiPerCloudlet(Integer mipsPerCloudlet) {
+        this.mipsPerCloudlet = mipsPerCloudlet;
     }
 
     public Integer getMipsPerVm() {
@@ -58,14 +61,6 @@ public class Service{
 
     public void setMipsPerVm(Integer mipsPerVm) {
         this.mipsPerVm = mipsPerVm;
-    }
-
-    public Integer getMinimumReputation() {
-        return minimumReputation;
-    }
-
-    public void setMinimumReputation(Integer minimumReputation) {
-        this.minimumReputation = minimumReputation;
     }
 
     public Integer getShift() {

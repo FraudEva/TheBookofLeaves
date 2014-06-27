@@ -184,8 +184,8 @@ public class DatacenterBroker extends SimEntity {
 		getDatacenterCharacteristicsList().put(characteristics.getId(), characteristics);
 
 		if (getDatacenterCharacteristicsList().size() == getDatacenterIdsList().size()) {
-			setDatacenterRequestedIdsList(new ArrayList<Integer>());
-			createVmsInDatacenter(getDatacenterIdsList().get(0));
+                    setDatacenterRequestedIdsList(new ArrayList<Integer>());
+                    createVmsInDatacenter(getDatacenterIdsList().get(0));
 		}
 	}
 

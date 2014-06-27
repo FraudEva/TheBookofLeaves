@@ -6,8 +6,7 @@
 
 package ec.espol.tesis.simulation.entities;
 
-import java.util.ArrayList;
-import java.util.List;
+import ec.espol.tesis.simulation.main.Simulator;
 
 /**
  *
@@ -18,12 +17,10 @@ public class User {
     private Integer     numberOfRequeriments;
     private Service     service;
     private SLA         sla;
-    private List<Broker> brokerList;
 
     public User(Integer id, Integer numberOfRequeriments) {
         this.id = id;
         this.numberOfRequeriments = numberOfRequeriments;
-        this.service = new Service();
     }
     
     
@@ -32,15 +29,11 @@ public class User {
     public void makeOrder(Service service, SLA sla) throws Exception{
         this.service = service;
         this.sla = sla;
-        brokerList = new ArrayList<Broker>();
         for( int i=0; i<numberOfRequeriments ; i++){
-            Broker broker = new Broker("AgenteBroker_"+id+"."+i,this.service.getScheduledTime(),this.service.getMaximumProfit());
-            broker.submitService(service, sla, id);
-            brokerList.add(broker);
+            Simulator.market.getBroker().submitService(this.service, this.sla, id);
         }
     }
     
-
     public Integer getId() {
         return id;
     }
@@ -49,7 +42,6 @@ public class User {
         this.id = id;
     }
 
-   
     public SLA getSla() {
         return sla;
     }
@@ -57,14 +49,7 @@ public class User {
     public void setSla(SLA sla) {
         this.sla = sla;
     }
-
-    public List<Broker> getListaAgentesBrokers() {
-        return brokerList;
-    }
-
-    public void setListaAgentesBrokers(List<Broker> brokerList) {
-        this.brokerList = brokerList;
-    }
+    
 }
 
 

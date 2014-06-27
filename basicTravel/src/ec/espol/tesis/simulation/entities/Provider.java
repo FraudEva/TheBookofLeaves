@@ -32,9 +32,9 @@ public class Provider extends Datacenter{
     public static final Integer MAXIMUM_REPUTATION=100;
     public static final Integer MINIMUM_REPUTATION=1;
     public static final Integer MEDIUM_REPUTATION=50;
-    private Double preferredProfit;
-    private Double minimunProfit;
-    private Integer successfullServices;
+    private Double preferredProfit; //ganancia preferida
+    private Double minimunProfit; //gananciaMinima
+    private Integer successfullServices; 
     private Integer failedServices;
     private Integer reputation;
     
@@ -55,80 +55,80 @@ public class Provider extends Datacenter{
     }
    
     public static Provider createProvider(String name,
-    Double preferredProfit,
-    Double minimunProfit,
-    Double probabilyToSucceed,
-    Integer mipsPerCore,
-    Integer initialReputation) throws Exception{ 
+            Double preferredProfit,
+            Double minimunProfit,
+            Double probabilyToSucceed,
+            Integer mipsPerCore,
+            Integer initialReputation) throws Exception{ 
     
-    // Here are the steps needed to create a PowerDatacenter:
-    // 1. We need to create a list to store
-    // our machine
-    List<ResourceHost> resourceList = new ArrayList<ResourceHost>();
-    
-    // 2. A Machine contains one or more PEs or CPUs/Cores.
-    // In this example, it will have only one core(4 para este ejemplo).
-    List<Pe> listaPe = new ArrayList<Pe>();
-    
-    // 3. Create PEs and add these into a list.
-    listaPe.add(new Pe(0, new PeProvisionerSimple(mipsPerCore)));
-    listaPe.add(new Pe(1, new PeProvisionerSimple(mipsPerCore)));
-    listaPe.add(new Pe(2, new PeProvisionerSimple(mipsPerCore)));
-    listaPe.add(new Pe(3, new PeProvisionerSimple(mipsPerCore)));
-    
-    // 4. Create Host with its id and list of PEs and add them to the list
-    // of machines
-    int idHost = 0;
-    int ram = /*2048*/16384;
-    long storage = 1000000;
-    int bw = 10000;
+            // Here are the steps needed to create a PowerDatacenter:
+            // 1. We need to create a list to store
+            // our machine
+            List<ResourceHost> resourceList = new ArrayList<ResourceHost>();
 
-    ResourceHost recursoHost = new ResourceHost(idHost,
-                                                new RamProvisionerSimple(ram),
-                                                new BwProvisionerSimple(bw),
-                                                storage,
-                                                listaPe,
-                                                new VmSchedulerTimeShared(listaPe)
-    );// This is our machine
-    recursoHost.setProbability(probabilyToSucceed); //Usado para la disponibilidad
-    resourceList.add(recursoHost);
+            // 2. A Machine contains one or more PEs or CPUs/Cores.
+            // In this example, it will have only one core(4 para este ejemplo).
+            List<Pe> listaPe = new ArrayList<Pe>();
 
-    // 5. Create a DatacenterCharacteristics object that stores the
-    // properties of a data center: architecture, OS, list of
-    // Machines, allocation policy: time- or space-shared, time zone
-    // and its price (G$/Pe time unit).
-        String architecture = "x86"; // system architecture
-        String oS = "Linux";  // operating system
-        String virtualMachine = "Xen";
-        double timeZone = 10.0; // time zone this resource located
-        double costPerMips = 3.0; // the cost of using processing in this resource
-        double costPerMemory = 0.05; // the cost of using memory in this resource
-        double costPerStorage= 0.05; // the cost of using storage in this
-        double costPerBandWidth = 0.1; // the cost of using bw in this resource
+            // 3. Create PEs and add these into a list.
+            listaPe.add(new Pe(0, new PeProvisionerSimple(mipsPerCore)));
+            listaPe.add(new Pe(1, new PeProvisionerSimple(mipsPerCore)));
+            listaPe.add(new Pe(2, new PeProvisionerSimple(mipsPerCore)));
+            listaPe.add(new Pe(3, new PeProvisionerSimple(mipsPerCore)));
 
-        LinkedList<Storage> storageList = new LinkedList<Storage>();  // we are not adding SAN
-                                                                                                            // devices by now
-        DatacenterCharacteristics characteristics = new DatacenterCharacteristics(
-                architecture, 
-                oS,
-                virtualMachine,
-                resourceList,
-                timeZone,
-                costPerMips,
-                costPerMemory,
-                costPerStorage,
-                costPerBandWidth);    
-    
-    // 6. Finally, we need to create a PowerDatacenter object.
-    Provider proveedor = new Provider(name,
-            characteristics,
-            new VmAllocationPolicySimple(resourceList),
-            storageList,
-            0,
-            preferredProfit,
-            minimunProfit,
-            initialReputation);
-            return proveedor;
+            // 4. Create Host with its id and list of PEs and add them to the list
+            // of machines
+            int idHost = 0;
+            int ram = /*2048*/16384;
+            long storage = 1000000;
+            int bw = 10000;
+
+            ResourceHost recursoHost = new ResourceHost(idHost,
+                                                        new RamProvisionerSimple(ram),
+                                                        new BwProvisionerSimple(bw),
+                                                        storage,
+                                                        listaPe,
+                                                        new VmSchedulerTimeShared(listaPe));// This is our machine
+            
+            recursoHost.setProbability(probabilyToSucceed); //Usado para la disponibilidad
+            resourceList.add(recursoHost);
+
+            // 5. Create a DatacenterCharacteristics object that stores the
+            // properties of a data center: architecture, OS, list of
+            // Machines, allocation policy: time- or space-shared, time zone
+            // and its price (G$/Pe time unit).
+                String architecture = "x86"; // system architecture
+                String oS = "Linux";  // operating system
+                String virtualMachine = "Xen";
+                double timeZone = 10.0; // time zone this resource located
+                double costPerMips = 3.0; // the cost of using processing in this resource
+                double costPerMemory = 0.05; // the cost of using memory in this resource
+                double costPerStorage= 0.05; // the cost of using storage in this
+                double costPerBandWidth = 0.1; // the cost of using bw in this resource
+
+                LinkedList<Storage> storageList = new LinkedList<Storage>();  // we are not adding SAN
+                                                                                                                    // devices by now
+                DatacenterCharacteristics characteristics = new DatacenterCharacteristics(
+                        architecture, 
+                        oS,
+                        virtualMachine,
+                        resourceList,
+                        timeZone,
+                        costPerMips,
+                        costPerMemory,
+                        costPerStorage,
+                        costPerBandWidth);    
+
+            // 6. Finally, we need to create a PowerDatacenter object.
+            Provider proveedor = new Provider(name,
+                    characteristics,
+                    new VmAllocationPolicySimple(resourceList),
+                    storageList,
+                    0,
+                    preferredProfit,
+                    minimunProfit,
+                    initialReputation);
+                    return proveedor;
     }
     
     private double calculatePreferredPrice(long mi){
