@@ -7,6 +7,7 @@
 package ec.espol.tesis.simulation.entities;
 
 import ec.espol.tesis.simulation.main.Simulator;
+import ec.espol.tesis.simulation.util.Util;
 
 /**
  *
@@ -25,13 +26,15 @@ public class User {
     
     
     /*Definir un solo broker para uno o mas usuarios con varios requerimientos. El broker es el mismo*
-	los requerimientos y los usuarios pueden variar*/
+    los requerimientos y los usuarios pueden variar*/
     public void makeOrder(Service service, SLA sla) throws Exception{
         this.service = service;
         this.sla = sla;
         for( int i=0; i<numberOfRequeriments ; i++){
+            Simulator.market.getBroker().setCountIds(Simulator.market.getBroker().getCountIds()+1);
             Simulator.market.getBroker().submitService(this.service, this.sla, id);
         }
+        Util.printMessage("================ VMs and Jobs submited ================");
     }
     
     public Integer getId() {

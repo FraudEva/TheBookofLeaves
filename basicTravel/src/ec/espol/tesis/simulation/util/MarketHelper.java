@@ -86,6 +86,7 @@ public class MarketHelper {
 
         for(int i=0;i<NumberOfVms;i++)
         {
+            Util.printMessage("Creating VM:\t"+(idShift+i));
             vm[i] = new Vm(idShift + i, userId, mips, pesNumber, ram, bw, size, vmm, new CloudletSchedulerTimeShared());
             list.add(vm[i]);
         }
@@ -114,6 +115,7 @@ public class MarketHelper {
         Job[] job = new Job[numberOfCloudlets];
         for(int i=0;i<numberOfCloudlets;i++)
         {
+            Util.printMessage("Creating Job :\t"+(idShift+i));
             job[i] = new Job(idShift + i, length, pesNumber, fileSize, outputSize, utilizationModel, utilizationModel, utilizationModel);
             // setting the owner of these Cloudlets
             job[i].setUserId(userId); //job[i].setSla(sla);

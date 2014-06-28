@@ -23,7 +23,6 @@ import org.cloudbus.cloudsim.core.CloudSim;
  */
 public class Simulator {
     public static Market market;
-    List<Broker> listaAgenteBroker;
     public static void main(String[] args){
         Util.printMessage("Empezando la simulación");
         try 
@@ -57,18 +56,18 @@ public class Simulator {
             // Final step: Print results when simulation is over
             List<Cloudlet> listaCloudletRecibidos = new ArrayList<Cloudlet>();
             List<Cloudlet> listaCloudlet = new ArrayList<Cloudlet>();
-            
+            List<Broker> listaAgenteBroker = new ArrayList<Broker>();
             CloudSim.stopSimulation();
             
-           /* for(Broker agenteBroker : listaAgenteBroker){
-                listaCloudletRecibidos.addAll(agenteBroker.getCloudletReceivedList());
-                listaCloudlet.addAll(agenteBroker.getCloudletList());
-            }
+//          for(Broker agenteBroker : listaAgenteBroker){
+            listaCloudletRecibidos.addAll(market.getBroker().getCloudletReceivedList());
+            listaCloudlet.addAll(market.getBroker().getCloudletList());
+//          }
             Util.printCloudletList(listaCloudletRecibidos,listaAgenteBroker);
             if(listaCloudlet.size()>0)
             {
                 Util.printCloudletList(listaCloudlet, listaAgenteBroker);  
-            }*/
+            }
             //Print the debt of each user to each datacenter
             Util.printSellerAgentInfo(Broker.getProviderList());/*allSellerAgents*/;
             
@@ -123,17 +122,17 @@ public class Simulator {
         Integer shift,
         Double maximumProfit*/
         
-        User user1 = new User(1,3);
+        User user1 = new User(1,2);
         user1.makeOrder(new Service(0.0,4000,250,1,0,0.4),new SLA());
 
-        User user2 = new User(2,3);
-        user2.makeOrder(new Service(20.0,4000,250,1,2,0.4),new SLA());
+        User user2 = new User(2,2);
+        user2.makeOrder(new Service(20.0,4000,250,1,1,0.4),new SLA());
 
-        User user3 = new User(3,3);
-        user3.makeOrder( new Service(40.0,4000,250,1,4,0.4),new SLA());
+        User user3 = new User(3,2);
+        user3.makeOrder( new Service(40.0,4000,250,1,2,0.4),new SLA());
 
-        User user4 = new User(4,3);
-        user4.makeOrder( new Service(60.0,4000,250,1,6,0.4),new SLA());
+        User user4 = new User(4,2);
+        user4.makeOrder( new Service(60.0,4000,250,1,3,0.4),new SLA());
         
     }
 }

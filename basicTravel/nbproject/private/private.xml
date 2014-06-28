@@ -5,18 +5,8 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/Usuario/Documents/GitHub/TheBookofLeaves/basicTravel/src/ec/espol/tesis/simulation/main/Simulator.java</file>
-            <file>file:/C:/Users/Usuario/Documents/GitHub/TheBookofLeaves/basicTravel/src/ec/espol/tesis/simulation/market/MarketMechanism.java</file>
-            <file>file:/C:/Users/Usuario/Documents/GitHub/TheBookofLeaves/basicTravel/src/ec/espol/tesis/simulation/market/Market.java</file>
             <file>file:/C:/Users/Usuario/Documents/GitHub/TheBookofLeaves/basicTravel/src/ec/espol/tesis/simulation/entities/Broker.java</file>
             <file>file:/C:/Users/Usuario/Documents/GitHub/TheBookofLeaves/basicTravel/src/ec/espol/tesis/simulation/entities/User.java</file>
-            <file>file:/C:/Users/Usuario/Documents/GitHub/TheBookofLeaves/basicTravel/src/ec/espol/tesis/simulation/entities/SLA.java</file>
-            <file>file:/C:/Users/Usuario/Documents/GitHub/TheBookofLeaves/basicTravel/src/ec/espol/tesis/simulation/market/PostedOffer.java</file>
-            <file>file:/C:/Users/Usuario/Documents/GitHub/TheBookofLeaves/basicTravel/src/ec/espol/tesis/simulation/entities/Service.java</file>
-            <file>file:/C:/Users/Usuario/Documents/GitHub/TheBookofLeaves/basicTravel/src/ec/espol/tesis/simulation/entities/ResourceHost.java</file>
-            <file>file:/C:/Users/Usuario/Documents/GitHub/TheBookofLeaves/basicTravel/src/ec/espol/tesis/simulation/entities/Provider.java</file>
-            <file>file:/C:/Users/Usuario/Documents/GitHub/TheBookofLeaves/basicTravel/src/ec/espol/tesis/simulation/entities/ReputationSystem.java</file>
-            <file>file:/C:/Users/Usuario/Documents/GitHub/TheBookofLeaves/basicTravel/src/ec/espol/tesis/simulation/entities/MyService.java</file>
-            <file>file:/C:/Users/Usuario/Documents/GitHub/TheBookofLeaves/basicTravel/src/examples/org/cloudbus/cloudsim/examples/CloudSimExample1.java</file>
             <file>file:/C:/Users/Usuario/Documents/GitHub/TheBookofLeaves/basicTravel/src/ec/espol/tesis/simulation/util/MarketHelper.java</file>
         </group>
     </open-files>
