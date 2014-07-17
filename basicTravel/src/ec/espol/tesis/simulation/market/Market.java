@@ -7,7 +7,9 @@
 package ec.espol.tesis.simulation.market;
 
 import ec.espol.tesis.simulation.entities.Broker;
-import org.cloudbus.cloudsim.DatacenterBroker;
+import ec.espol.tesis.simulation.entities.MyUserJ;
+import ec.espol.tesis.simulation.entities.User;
+import java.util.ArrayList;
 
 /**
  *
@@ -17,18 +19,11 @@ public class Market {
 
     private static final Double COSTO_POR_MI = 1.0;
     public MarketMechanism mecanismo;
-    public Broker broker;
+    public ArrayList<MyUserJ> userList;
 
     public Market() {
-        Broker broker = null;
-        try {
-                broker = new Broker("Broker_A");
-                this.broker =  broker;
-        } catch (Exception e) {
-                e.printStackTrace();
-        }
+        userList =   new ArrayList<MyUserJ>();
     }
-    
     
     public static Double estimarCostoMI(Long mi){
         return COSTO_POR_MI*mi;
@@ -42,13 +37,12 @@ public class Market {
         this.mecanismo = mecanismo;
     }
 
-    public Broker getBroker() {
-        return broker;
+    public ArrayList<MyUserJ> getUserList() {
+        return userList;
     }
 
-    public void setBroker(Broker broker) {
-        this.broker = broker;
+    public void setUserList(ArrayList<MyUserJ> userList) {
+        this.userList = userList;
     }
-    
     
 }

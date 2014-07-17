@@ -297,7 +297,7 @@ public class CloudSim {
 	 * start of the simulation.
 	 */
 	protected static void initialize() {
-		Log.printLine("Initialising...");
+		Log.printLine("Initialising CloudSim variables");
 		entities = new ArrayList<SimEntity>();
 		entitiesByName = new LinkedHashMap<String, SimEntity>();
 		future = new FutureQueue();

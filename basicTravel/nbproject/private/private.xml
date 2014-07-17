@@ -4,10 +4,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/Users/Usuario/Documents/GitHub/TheBookofLeaves/basicTravel/src/org/cloudbus/cloudsim/core/CloudSim.java</file>
             <file>file:/C:/Users/Usuario/Documents/GitHub/TheBookofLeaves/basicTravel/src/ec/espol/tesis/simulation/main/Simulator.java</file>
+            <file>file:/C:/Users/Usuario/Documents/GitHub/TheBookofLeaves/basicTravel/src/org/cloudbus/cloudsim/core/SimEntity.java</file>
+            <file>file:/C:/Users/Usuario/Documents/GitHub/TheBookofLeaves/basicTravel/src/ec/espol/tesis/simulation/market/Market.java</file>
             <file>file:/C:/Users/Usuario/Documents/GitHub/TheBookofLeaves/basicTravel/src/ec/espol/tesis/simulation/entities/Broker.java</file>
-            <file>file:/C:/Users/Usuario/Documents/GitHub/TheBookofLeaves/basicTravel/src/ec/espol/tesis/simulation/entities/User.java</file>
-            <file>file:/C:/Users/Usuario/Documents/GitHub/TheBookofLeaves/basicTravel/src/ec/espol/tesis/simulation/util/MarketHelper.java</file>
+            <file>file:/C:/Users/Usuario/Documents/GitHub/TheBookofLeaves/basicTravel/src/ec/espol/tesis/simulation/entities/MyUserJ.java</file>
         </group>
     </open-files>
 </project-private>

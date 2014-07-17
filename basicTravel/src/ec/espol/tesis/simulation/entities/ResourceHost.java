@@ -38,18 +38,18 @@ public class ResourceHost extends Host {
     @Override
     public boolean vmCreate(Vm vm) {
         if(!setProbability(probabilityToSucceed)){
-            Log.printLine("Allocation of VM #"+vm.getId()+"to RecurseHost #"+getId()+"failed by Availability" );
+            Log.printLine("Allocation of VM #"+vm.getId()+"to RecurseHost # "+getId()+"failed by Availability" );
             //Disminuir reputación
             return false;
         }
         
         if(!getRamProvisioner().allocateRamForVm(vm,vm.getCurrentRequestedRam())){
-            Log.printLine("Allocation of VM #"+vm.getId()+"to RecursoHost #"+getId()+"failed by Memory - RAM" );
+            Log.printLine("Allocation of VM #"+vm.getId()+"to RecursoHost # "+getId()+"failed by Memory - RAM" );
             return false;
         }
         
         if(!getBwProvisioner().allocateBwForVm(vm,vm.getCurrentRequestedBw())){
-            Log.printLine("Allocation of VM #"+vm.getId()+"to RecursoHost #" + getId() + "failed by Bandwith - BW" );
+            Log.printLine("Allocation of VM #"+vm.getId()+"to RecursoHost # " + getId() + "failed by Bandwith - BW" );
             return false;
         }
         
@@ -90,7 +90,7 @@ public class ResourceHost extends Host {
     }
    
     protected boolean setProbability( double p){
-        return (Math.random() < p);
+        return true;
     }
     
 }

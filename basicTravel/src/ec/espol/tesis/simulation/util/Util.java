@@ -7,8 +7,13 @@
 package ec.espol.tesis.simulation.util;
 
 import ec.espol.tesis.simulation.entities.Broker;
+import ec.espol.tesis.simulation.entities.MyUserJ;
 import ec.espol.tesis.simulation.entities.Provider;
+import ec.espol.tesis.simulation.entities.User;
+import ec.espol.tesis.simulation.market.MarketMechanism;
+import ec.espol.tesis.simulation.market.PostedOffer;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.List;
 import org.cloudbus.cloudsim.Cloudlet;
 import org.cloudbus.cloudsim.Log;
@@ -18,9 +23,65 @@ import org.cloudbus.cloudsim.Log;
  * @author Usuario
  */
 public class Util {
+    
+    public static void printTittle(){
+         Util.printMessage("\t\t\t===================================== \n\t\t\t========== TheBookofLeaves ========== \n\t\t\t===================================== \n ");
+    }
+    public static void printMarketMechanismName(MarketMechanism m){
+        /*if(m instanceof PostedOffer){
+            printMessage("Using PostedOffer");
+        }*/
+        printMessage("Using MarketMechanism :" + m.getClass().getName()+"\n");
+    }
+    
     public static void printMessage(String mensaje){
         Log.printLine(mensaje);
     }
+    
+    public static void printProviderList(ArrayList<Provider> providerList){
+        Log.printLine("Provider list");
+        String indent = "\t";
+        Log.printLine("ID" + indent +  
+                      "Name" + indent + indent +
+                      "Preferred Profit" + indent +
+                      "Minimun Profit"+ indent + indent +
+                      "Mips Per Core(Host-VM)"  );
+        for(Provider p: providerList){
+            Log.printLine(p.getId() + indent +  
+                      p.getName() + indent + indent +
+                      p.getPreferredProfit() + indent + indent +
+                      p.getMinimunProfit()+ indent + indent + indent +
+                      p.getMipsPerCore());
+        }
+        Log.printLine();
+    }
+    
+    public static void printUserList(ArrayList<MyUserJ> userList){
+        Log.printLine("User requeriments list");
+        String indent = "\t";
+        Log.printLine("User ID" + indent + 
+                      "Scheduled Time" + indent +
+                      "Mips Per Vm" + indent +
+                      "Mips Per Cloudlet" + indent +
+                      "Shift" + indent + indent +
+                      "Maximum Profit");
+        
+        for(MyUserJ u: userList){
+            for(int i = 0; i < u.getNumberOfRequeriments() ; i++){
+                Log.printLine(u.getId() + indent +
+                u.getService().getScheduledTime() + indent +  indent +  indent +
+                u.getService().getMipsPerVm() + indent + indent +
+                u.getService().getMiPerCloudlet() + indent + indent +
+                u.getService().getShift() + indent + indent + indent +
+                u.getService().getMaximumProfit());
+            }
+        }
+        Log.printLine();
+    }
+    
+    
+    
+    
     
     public static void printCloudletList(List<Cloudlet> list, List<Broker> buyerAgents)
     {
