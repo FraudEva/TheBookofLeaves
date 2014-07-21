@@ -37,6 +37,7 @@ public class MyUserJ {
             Broker broker = new Broker("AgenteBroker_"+id+"."+i,this.service.getScheduledTime() , sla, this.service.getMaximumProfit());
             broker.submitService(service, sla, id);
             brokerList.add(broker);
+            Simulator.market.brokerList.add(broker);
             broker.setCountIds(broker.getCountIds()+1);
         }
     }

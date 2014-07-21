@@ -9,6 +9,7 @@ package ec.espol.tesis.simulation.util;
 import ec.espol.tesis.simulation.entities.Broker;
 import ec.espol.tesis.simulation.entities.MyUserJ;
 import ec.espol.tesis.simulation.entities.Provider;
+import ec.espol.tesis.simulation.entities.SLA;
 import ec.espol.tesis.simulation.entities.User;
 import ec.espol.tesis.simulation.market.MarketMechanism;
 import ec.espol.tesis.simulation.market.PostedOffer;
@@ -79,10 +80,6 @@ public class Util {
         Log.printLine();
     }
     
-    
-    
-    
-    
     public static void printCloudletList(List<Cloudlet> list, List<Broker> buyerAgents)
     {
         int size = list.size();        
@@ -149,6 +146,44 @@ public class Util {
             Log.printLine(sellerAgent.getName() +" reputation is "+sellerAgent.getReputation());
             sellerAgent.printDebts();
         }
+    }
+    
+    public static void printServiceTittle(){
+        Log.printLine("Searching best provider for  service requerid");
+        String indent = "\t";
+        Log.printLine("Mips" + indent +  
+                      "Reference Price" + indent + 
+                      "Minimum Reputation Required" + indent +
+                      "SLA");
+    }
+    
+    public static void printServiceInfo(long mips, double referencePrice, Integer minimumReputationRequired, SLA sla){
+        String indent = "\t";
+        Log.printLine(mips + indent +  
+                      referencePrice+ indent + indent +
+                      minimumReputationRequired + indent + indent + indent + indent +
+                      sla.toString());
+    }
+    
+    public static void printBidTittle(){
+        Log.printLine("Provider bids");
+        String indent = "\t";
+        Log.printLine("Provider" + indent +  
+                      "Bid" + indent + indent + indent +
+                      "Pondered Bid" + indent + indent + indent +
+                      "Reputacion");
+    }
+    
+    public static void printBidInfo(Provider p, double bid, double ponderedBid, double reputation){
+        String indent = "\t";
+        Log.printLine(p.getName() + indent +  
+                      bid + indent + indent + indent +
+                      ponderedBid +  indent + indent + indent +
+                      reputation);
+    }
+    
+    public static void printBestProvider(Provider p){
+        Log.printLine("Best Provider :" + p.getName());
     }
 }
 

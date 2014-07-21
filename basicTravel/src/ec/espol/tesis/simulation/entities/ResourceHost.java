@@ -12,6 +12,7 @@ import org.cloudbus.cloudsim.Log;
 import org.cloudbus.cloudsim.Pe;
 import org.cloudbus.cloudsim.Vm;
 import org.cloudbus.cloudsim.VmScheduler;
+import org.cloudbus.cloudsim.core.CloudSim;
 import org.cloudbus.cloudsim.provisioners.BwProvisioner;
 import org.cloudbus.cloudsim.provisioners.RamProvisioner;
 
@@ -38,23 +39,23 @@ public class ResourceHost extends Host {
     @Override
     public boolean vmCreate(Vm vm) {
         if(!setProbability(probabilityToSucceed)){
-            Log.printLine("Allocation of VM #"+vm.getId()+"to RecurseHost # "+getId()+"failed by Availability" );
+            Log.printLine(CloudSim.clock()+": Allocation of VM # "+vm.getId()+" to RecurseHost # "+getId()+" failed by Availability in " + getDatacenter().getName()+"\n");
             //Disminuir reputación
             return false;
         }
         
         if(!getRamProvisioner().allocateRamForVm(vm,vm.getCurrentRequestedRam())){
-            Log.printLine("Allocation of VM #"+vm.getId()+"to RecursoHost # "+getId()+"failed by Memory - RAM" );
+            Log.printLine("Allocation of VM #"+vm.getId()+"to RecursoHost # "+getId()+"failed by Memory - RAM \n" );
             return false;
         }
         
         if(!getBwProvisioner().allocateBwForVm(vm,vm.getCurrentRequestedBw())){
-            Log.printLine("Allocation of VM #"+vm.getId()+"to RecursoHost # " + getId() + "failed by Bandwith - BW" );
+            Log.printLine("Allocation of VM #"+vm.getId()+"to RecursoHost # " + getId() + "failed by Bandwith - BW \n" );
             return false;
         }
         
         if(!getVmScheduler().allocatePesForVm(vm, vm.getCurrentRequestedMips())){
-            Log.printLine("[VmScheduler.vmCreate] Allocation of VM #"+vm.getId()+" to Host #"+ getId() + " failed by MIPS");
+            Log.printLine("[VmScheduler.vmCreate] Allocation of VM #"+vm.getId()+" to Host #"+ getId() + " failed by MIPS \n");
             getRamProvisioner().deallocateRamForVm(vm);
             getBwProvisioner().deallocateBwForVm(vm);
             return false;
@@ -91,6 +92,7 @@ public class ResourceHost extends Host {
    
     protected boolean setProbability( double p){
         return true;
+         //return (Math.random() < p);
     }
     
 }

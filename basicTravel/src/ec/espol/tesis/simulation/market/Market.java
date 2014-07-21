@@ -8,6 +8,7 @@ package ec.espol.tesis.simulation.market;
 
 import ec.espol.tesis.simulation.entities.Broker;
 import ec.espol.tesis.simulation.entities.MyUserJ;
+import ec.espol.tesis.simulation.entities.ReputationSystem;
 import ec.espol.tesis.simulation.entities.User;
 import java.util.ArrayList;
 
@@ -20,9 +21,12 @@ public class Market {
     private static final Double COSTO_POR_MI = 1.0;
     public MarketMechanism mecanismo;
     public ArrayList<MyUserJ> userList;
+    public ArrayList<Broker> brokerList;
+    public ReputationSystem rs;
 
     public Market() {
         userList =   new ArrayList<MyUserJ>();
+        brokerList = new ArrayList<Broker>();
     }
     
     public static Double estimarCostoMI(Long mi){
@@ -43,6 +47,14 @@ public class Market {
 
     public void setUserList(ArrayList<MyUserJ> userList) {
         this.userList = userList;
+    }
+
+    public ReputationSystem getRs() {
+        return rs;
+    }
+
+    public void setRs(ReputationSystem rs) {
+        this.rs = rs;
     }
     
 }

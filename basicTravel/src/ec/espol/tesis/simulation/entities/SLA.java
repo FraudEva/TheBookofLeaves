@@ -11,5 +11,11 @@ package ec.espol.tesis.simulation.entities;
  * @author Usuario
  */
 public class SLA {
+
+    @Override
+    public String toString() {
+        return "SLA{" + '}';
+    }
+    
     
 }

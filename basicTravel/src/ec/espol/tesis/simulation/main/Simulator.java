@@ -56,22 +56,11 @@ public class Simulator {
             CloudSim.startSimulation();
 
             // Final step: Print results when simulation is over
-            List<Cloudlet> listaCloudletRecibidos = new ArrayList<Cloudlet>();
-            List<Cloudlet> listaCloudlet = new ArrayList<Cloudlet>();
-            List<Broker> listaAgenteBroker = new ArrayList<Broker>();
             CloudSim.stopSimulation();
             
-//          for(Broker agenteBroker : listaAgenteBroker){
-            //listaCloudletRecibidos.addAll(market.getBroker().getCloudletReceivedList());
-            //listaCloudlet.addAll(market.getBroker().getCloudletList());
-//          }
-            Util.printCloudletList(listaCloudletRecibidos,listaAgenteBroker);
-            if(listaCloudlet.size()>0)
-            {
-                Util.printCloudletList(listaCloudlet, listaAgenteBroker);  
-            }
-            //Print the debt of each user to each datacenter
-            Util.printSellerAgentInfo(Broker.getProviderList());/*allSellerAgents*/;
+            printCloudletStatus();
+            
+          
             
          } catch (Exception ex) {
             Logger.getLogger(Simulator.class.getName()).log(Level.SEVERE, null, ex);
@@ -85,7 +74,7 @@ public class Simulator {
             Integer mipsPorNucleo,
             Integer reputacionInicial*/
             Provider proveedorA = Provider.createProvider("Proveedor_A",
-                                                            0.32, 
+                                                            0.36, 
                                                             0.30,
                                                             0.98,
                                                             250,
@@ -97,14 +86,14 @@ public class Simulator {
                                                             250,
                                                             Provider.MEDIUM_REPUTATION);
             Provider proveedorC = Provider.createProvider("Proveedor_C",
-                                                            0.35, 
+                                                            0.34, 
                                                             0.30,
-                                                            0.68,
+                                                            0.98,
                                                             250,
                                                             Provider.MEDIUM_REPUTATION);
             Provider proveedorD = Provider.createProvider("Proveedor_D",
                                                             0.35, 
-                                                            0.35,
+                                                            0.20,
                                                             0.95,
                                                             250,
                                                             Provider.MEDIUM_REPUTATION);
@@ -156,9 +145,31 @@ public class Simulator {
     private static void initMarket(){
         Util.printMessage("Setting Market ...");
         market = new Market();
+        
+        //MarketMechanism mecanismo = new ReverseAuction();
         MarketMechanism mecanismo = new PostedOffer();
         market.setMecanismo(mecanismo);
         Util.printMarketMechanismName(mecanismo);
+        
+        ReputationSystem rs = new ReputationSystem();
+        market.setRs(rs);
+    }
+    
+    private static void printCloudletStatus(){
+        List<Cloudlet> listaCloudletRecibidos = new ArrayList<Cloudlet>();
+        List<Cloudlet> listaCloudlet = new ArrayList<Cloudlet>();
+        List<Broker> listaAgenteBroker = new ArrayList<Broker>();
+        for(Broker agenteBroker : Simulator.market.brokerList){
+            listaCloudletRecibidos.addAll(agenteBroker.getCloudletReceivedList());
+            listaCloudlet.addAll(agenteBroker.getCloudletList());
+          }
+            Util.printCloudletList(listaCloudletRecibidos,listaAgenteBroker);
+            if(listaCloudlet.size()>0)
+            {
+                Util.printCloudletList(listaCloudlet, listaAgenteBroker);  
+            }
+            //Print the debt of each user to each datacenter
+            Util.printSellerAgentInfo(Broker.getProviderList());/*allSellerAgents*/;
     }
 }
 

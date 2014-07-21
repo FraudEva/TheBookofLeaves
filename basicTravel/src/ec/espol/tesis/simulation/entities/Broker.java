@@ -104,9 +104,9 @@ public class Broker extends DatacenterBroker {
         if(result == CloudSimTags.TRUE){
             getVmsToDatacentersMap().put(vmId,dataCenterId);
             getVmsCreatedList().add(VmList.getById(getVmList(), vmId));
-            Util.printMessage(CloudSim.clock()+ ": " + getName()+":" + " VM #" + vmId + "has been created in DataCenter #" +dataCenterId + " " + getProviderById(dataCenterId).getName() + ", Host # "+VmList.getById(getVmsCreatedList(), vmId).getHost().getId());
+            Util.printMessage(CloudSim.clock()+ ": " + getName()+":" + " VM #" + vmId + " has been created in DataCenter #" +dataCenterId + " " + getProviderById(dataCenterId).getName() + ", Host # "+VmList.getById(getVmsCreatedList(), vmId).getHost().getId());
         }else{
-            Util.printMessage(CloudSim.clock()+ ": " + getName()+":" + " VM #" + vmId + "failed in Datacenter # "+ dataCenterId + " " + getProviderById(dataCenterId).getName());
+            Util.printMessage(CloudSim.clock()+ ": " + getName()+":" + " VM #" + vmId + " failed in Datacenter # "+ dataCenterId + " " + getProviderById(dataCenterId).getName());
         }       
         incrementVmsAcks();
         if(getVmsCreatedList().size() == getVmList().size() - getVmsDestroyed()){
