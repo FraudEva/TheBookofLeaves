@@ -217,6 +217,15 @@ public class Provider extends Datacenter{
         }
         return mipspc;
     }
+    
+    public void increaseSuccessFullJobs(){
+        successfullServices++;
+    }
+    
+    public void increaseFailedServices()
+    {
+        failedServices++;
+    }
   
 }
 

@@ -103,12 +103,12 @@ public class Util {
         for (int i = 0; i < size; i++)
         {
             job = list.get(i);
-            Log.print(job.getCloudletId() + indent);
+            Log.print(job.getCloudletId() + indent + indent);
             /*Log.print(indent + job.getCloudletId() + indent + indent);*/
 
             //if (job.getCloudletStatus() == Cloudlet.SUCCESS || job.getCloudletStatus() == Cloudlet.CREATED)
             //{
-            Log.print(job.getCloudletStatusString());
+            Log.print(job.getCloudletStatusString()+indent);
             //Log.print("SUCCESS");
             int tries = 0;
             for(Broker buyerAgent : buyerAgents)
@@ -128,8 +128,8 @@ public class Util {
 
             Log.printLine( indent + job.getResourceId() + indent +  job.getVmId() +
                             indent + dft.format(job.getActualCPUTime()) +
-                            indent +  dft.format(job.getExecStartTime())+ indent +  dft.format(job.getFinishTime()) +
-                            indent +  tries +
+                            indent +  dft.format(job.getExecStartTime())+ indent + indent +  dft.format(job.getFinishTime()) +
+                            indent + indent + indent+ tries +
                             indent +  job.getUserId());
             //}
         }
@@ -143,8 +143,13 @@ public class Util {
     {
         for (Provider sellerAgent : sellerAgents)
         {
-            Log.printLine(sellerAgent.getName() +" reputation is "+sellerAgent.getReputation());
+            Log.printLine("\n");
+            Log.printLine(sellerAgent.getName()+":");
+            Log.printLine("Reputation is "+sellerAgent.getReputation());
+            Log.printLine("Succes Full Jobs: " + sellerAgent.getSuccessfullServices());
+            Log.printLine("Failed Jobs: " + sellerAgent.getFailedServices());
             sellerAgent.printDebts();
+            
         }
     }
     
@@ -183,7 +188,9 @@ public class Util {
     }
     
     public static void printBestProvider(Provider p){
-        Log.printLine("Best Provider :" + p.getName());
+        if(p!=null){
+            Log.printLine("Best Provider :" + p.getName());
+        }
     }
 }
 

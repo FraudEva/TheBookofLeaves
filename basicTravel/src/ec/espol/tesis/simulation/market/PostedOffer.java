@@ -27,9 +27,9 @@ public class PostedOffer extends MarketMechanism{
         Provider bestProvider = null;
         double lowestBid = -1;
         List<Provider> observers = Broker.getProviderList();
-        Util.printServiceTittle();
-        Util.printServiceInfo(mips, referencePrice, minimumReputationRequired, sla);
-        Util.printBidTittle();
+        //Util.printServiceTittle();
+        //Util.printServiceInfo(mips, referencePrice, minimumReputationRequired, sla);
+        //Util.printBidTittle();
         for(Provider provider : observers)
         {
             if(provider.getReputation()>= minimumReputationRequired)
@@ -44,10 +44,10 @@ public class PostedOffer extends MarketMechanism{
                     lowestBid = bidPonder;
                     bestProvider = provider;
                 }
-                Util.printBidInfo(provider, bid, bidPonder, reputation);
+                //Util.printBidInfo(provider, bid, bidPonder, reputation);
             }
         }
-        Util.printBestProvider(bestProvider);
+        //Util.printBestProvider(bestProvider);
         return bestProvider;
     }
     

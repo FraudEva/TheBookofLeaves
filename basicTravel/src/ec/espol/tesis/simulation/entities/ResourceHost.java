@@ -40,7 +40,7 @@ public class ResourceHost extends Host {
     public boolean vmCreate(Vm vm) {
         if(!setProbability(probabilityToSucceed)){
             Log.printLine(CloudSim.clock()+": Allocation of VM # "+vm.getId()+" to RecurseHost # "+getId()+" failed by Availability in " + getDatacenter().getName()+"\n");
-            //Disminuir reputación
+            ((Provider)this.getDatacenter()).increaseFailedServices();
             return false;
         }
         
@@ -62,7 +62,7 @@ public class ResourceHost extends Host {
         }
         getVmList().add(vm);
         vm.setHost(this);
-        //((ProveedorDeServicio)this.getDatacenter()).incrementarReputacion();
+        ((Provider)this.getDatacenter()).increaseSuccessFullJobs();
         return true;
     }
 
@@ -91,8 +91,8 @@ public class ResourceHost extends Host {
     }
    
     protected boolean setProbability( double p){
-        return true;
-         //return (Math.random() < p);
+        //return true;
+        return (Math.random() < p);
     }
     
 }
