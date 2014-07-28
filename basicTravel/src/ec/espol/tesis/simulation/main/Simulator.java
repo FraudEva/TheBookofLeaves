@@ -49,7 +49,7 @@ public class Simulator {
                  
             // Third step: Create Broker
             //Fourth step: Create VMs and Cloudlets and send them to broker
-            createMyUserJs();
+            createUsers();
             makeOrders();
             
             // Fifth step: Starts the simulation
@@ -104,7 +104,7 @@ public class Simulator {
             Util.printProviderList(Broker.getProviderList());
     }
     
-    private static void createMyUserJs(){
+    private static void createUsers(){
    
         /*Double scheduledTime,
         Integer mipsPerCloudlet,
