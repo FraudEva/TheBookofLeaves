@@ -4,14 +4,12 @@
  * and open the template in the editor.
  */
 
-package ec.espol.tesis.simulation.ui;
-
-import javax.swing.JPanel;
+package ec.espol.tesis.simulation.util;
 
 /**
  *
- * @author Usuario
+ * @author José Luis
  */
-public class main extends JPanel{
+public class UtilMenu {
     
 }

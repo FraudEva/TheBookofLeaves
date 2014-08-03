@@ -38,6 +38,16 @@ public class Service {
             this.shift = shift;
             this.maximumProfit = maximumProfit;
     }
+    
+    public static Service createService(Double scheduledTime,
+        Integer mipsPerCloudlet,
+        Integer mipsPerVm,
+        Integer minimumReputation,
+        Integer shift,
+        Double maximumProfit){
+        Service s = new Service(scheduledTime, mipsPerCloudlet, mipsPerVm, minimumReputation, shift, maximumProfit);
+        return s;
+    }
 
     public Double getScheduledTime() {
         return scheduledTime;

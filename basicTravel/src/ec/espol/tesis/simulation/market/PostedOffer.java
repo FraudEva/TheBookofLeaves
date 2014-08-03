@@ -9,7 +9,7 @@ import ec.espol.tesis.simulation.entities.Broker;
 import ec.espol.tesis.simulation.entities.Provider;
 import ec.espol.tesis.simulation.entities.SLA;
 import ec.espol.tesis.simulation.main.Simulator;
-import ec.espol.tesis.simulation.util.Util;
+import ec.espol.tesis.simulation.util.UtilPrint;
 import java.util.List;
 
 /**

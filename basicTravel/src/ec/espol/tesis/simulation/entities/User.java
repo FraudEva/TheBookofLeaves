@@ -7,7 +7,9 @@
 package ec.espol.tesis.simulation.entities;
 
 import ec.espol.tesis.simulation.main.Simulator;
-import ec.espol.tesis.simulation.util.Util;
+import ec.espol.tesis.simulation.util.UtilPrint;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -18,21 +20,30 @@ public class User {
     private Integer     numberOfRequeriments;
     private Service     service;
     private SLA         sla;
-
+    private List<Broker> brokerList;
+    
     public User(Integer id, Integer numberOfRequeriments) {
         this.id = id;
         this.numberOfRequeriments = numberOfRequeriments;
     }
     
+    public static User createUser(Integer id, Integer numberOfRequeriments){
+        User u = new User(id, numberOfRequeriments);
+        return u;
+    }
     
     /*Definir un solo broker para uno o mas usuarios con varios requerimientos. El broker es el mismo*
     los requerimientos y los usuarios pueden variar*/
     public void makeOrder(Service service, SLA sla) throws Exception{
         this.service = service;
         this.sla = sla;
+        brokerList = new ArrayList<Broker>();
         for( int i=0; i<numberOfRequeriments ; i++){
-            //Simulator.market.getBroker().setCountIds(Simulator.market.getBroker().getCountIds()+1);
-            //Simulator.market.getBroker().submitService(this.service, this.sla, id);
+            Broker broker = new Broker("AgenteBroker_"+id+"."+i,this.service.getScheduledTime() , sla, this.service.getMaximumProfit());
+            broker.submitService(service, sla, id);
+            brokerList.add(broker);
+            Simulator.market.getBrokerList().add(broker);
+            broker.setCountIds(broker.getCountIds()+1);
         }
     }
     

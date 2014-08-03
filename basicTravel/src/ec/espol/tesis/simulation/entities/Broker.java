@@ -9,7 +9,7 @@ package ec.espol.tesis.simulation.entities;
 import ec.espol.tesis.simulation.main.Simulator;
 import ec.espol.tesis.simulation.market.Market;
 import ec.espol.tesis.simulation.util.MarketHelper;
-import ec.espol.tesis.simulation.util.Util;
+import ec.espol.tesis.simulation.util.UtilPrint;
 import java.util.ArrayList;
 import java.util.List;
 import org.cloudbus.cloudsim.Cloudlet;
@@ -69,7 +69,7 @@ public class Broker extends DatacenterBroker {
     @Override
     public void startEntity() {
         //super.startEntity(); //To change body of generated methods, choose Tools | Templates.
-        Util.printMessage(getName() +" starting...");
+        UtilPrint.printMessage(getName() +" starting...");
         schedule(getId(),this.startTime,CloudSimTags.RESOURCE_CHARACTERISTICS_REQUEST);
     }    
     
@@ -88,7 +88,7 @@ public class Broker extends DatacenterBroker {
             {
                 createVmsInDatacenter(bestProvider.getId());
             }else{
-                Util.printMessage("No hay un proveedor disponible o adecuado");
+                UtilPrint.printMessage("No hay un proveedor disponible o adecuado");
             }
         }
     }
@@ -104,9 +104,9 @@ public class Broker extends DatacenterBroker {
         if(result == CloudSimTags.TRUE){
             getVmsToDatacentersMap().put(vmId,dataCenterId);
             getVmsCreatedList().add(VmList.getById(getVmList(), vmId));
-            Util.printMessage(CloudSim.clock()+ ": " + getName()+":" + " VM #" + vmId + " has been created in DataCenter #" +dataCenterId + " " + getProviderById(dataCenterId).getName() + ", Host # "+VmList.getById(getVmsCreatedList(), vmId).getHost().getId());
+            UtilPrint.printMessage(CloudSim.clock()+ ": " + getName()+":" + " VM #" + vmId + " has been created in DataCenter #" +dataCenterId + " " + getProviderById(dataCenterId).getName() + ", Host # "+VmList.getById(getVmsCreatedList(), vmId).getHost().getId());
         }else{
-            Util.printMessage(CloudSim.clock()+ ": " + getName()+":" + " VM #" + vmId + " failed in Datacenter # "+ dataCenterId + " " + getProviderById(dataCenterId).getName());
+            UtilPrint.printMessage(CloudSim.clock()+ ": " + getName()+":" + " VM #" + vmId + " failed in Datacenter # "+ dataCenterId + " " + getProviderById(dataCenterId).getName());
         }       
         incrementVmsAcks();
         if(getVmsCreatedList().size() == getVmList().size() - getVmsDestroyed()){
@@ -124,7 +124,7 @@ public class Broker extends DatacenterBroker {
             if(getVmsCreatedList().size() > 0 ){
                 submitCloudlets();
             }else{
-                Util.printMessage(CloudSim.clock() + ": " + getName() + ": none of the required VMs could be created.");
+                UtilPrint.printMessage(CloudSim.clock() + ": " + getName() + ": none of the required VMs could be created.");
                 finishExecution();
             }
         }
@@ -165,7 +165,7 @@ public class Broker extends DatacenterBroker {
     @Override
     public void shutdownEntity() {
         //super.shutdownEntity(); //To change body of generated methods, choose Tools | Templates.
-        Util.printMessage(getName() + " is shutting down...");
+        UtilPrint.printMessage(getName() + " is shutting down...");
     }
     
     /**

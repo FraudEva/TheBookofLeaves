@@ -8,7 +8,7 @@ package ec.espol.tesis.simulation.main;
 
 import ec.espol.tesis.simulation.entities.*;
 import ec.espol.tesis.simulation.market.*;
-import ec.espol.tesis.simulation.util.Util;
+import ec.espol.tesis.simulation.util.UtilPrint;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -19,14 +19,16 @@ import org.cloudbus.cloudsim.core.CloudSim;
 
 /**
  *
- * @author MyUserJ
+ * @author User
  */
 public class Simulator {
     public static Market market;
+    
     public static void main(String[] args){
-        Util.printTittle();
+        UtilPrint.printTittle();
         startSimulation();
     }
+    
     private static void startSimulation(){
         try 
         {
@@ -101,7 +103,12 @@ public class Simulator {
             Broker.addProviderToList(proveedorB);
             Broker.addProviderToList(proveedorC);
             Broker.addProviderToList(proveedorD);
-            Util.printProviderList(Broker.getProviderList());
+            UtilPrint.printProviderList(Broker.getProviderList());
+    }
+    
+    public static void init(){
+        int userNumber = 4;
+        int providerNumber = 4;
     }
     
     private static void createUsers(){
@@ -113,43 +120,43 @@ public class Simulator {
         Integer shift,
         Double maximumProfit*/
         
-        MyUserJ user1 = new MyUserJ(1,2);
+        User user1 = new User(1,2);
         user1.setService(new Service(0.0,4000,250,1,0,0.4));
         user1.setSla(new SLA());
 
-        MyUserJ user2 = new MyUserJ(2,2);
+        User user2 = new User(2,2);
         user2.setService(new Service(20.0,4000,250,1,2,0.4));
         user2.setSla(new SLA());
         
-        MyUserJ user3 = new MyUserJ(3,2);
+        User user3 = new User(3,2);
         user3.setService(new Service(40.0,4000,250,1,4,0.4));
         user3.setSla(new SLA());
          
-        MyUserJ user4 = new MyUserJ(4,2);
+        User user4 = new User(4,2);
         user4.setService(new Service(60.0,4000,250,1,6,0.4));
         user4.setSla(new SLA());
         
         market.getUserList().add(user1);market.getUserList().add(user2);market.getUserList().add(user3);market.getUserList().add(user4);
-        Util.printUserList(market.getUserList());
+        UtilPrint.printUserList(market.getUserList());
         
     }
     
     private static void makeOrders() throws Exception{
-        Util.printMessage("Making order for requeriments...");
-        for(MyUserJ u: market.getUserList()){
+        UtilPrint.printMessage("Making order for requeriments...");
+        for(User u: market.getUserList()){
             u.makeOrder(u.getService(), u.getSla());
         }
-        Util.printMessage("VMs and Jobs submited\n");
+        UtilPrint.printMessage("VMs and Jobs submited\n");
     }
     
     private static void initMarket(){
-        Util.printMessage("Setting Market ...");
+        UtilPrint.printMessage("Setting Market ...");
         market = new Market();
         
         //MarketMechanism mecanismo = new ReverseAuction();
         MarketMechanism mecanismo = new PostedOffer();
         market.setMecanismo(mecanismo);
-        Util.printMarketMechanismName(mecanismo);
+        UtilPrint.printMarketMechanismName(mecanismo);
         
         ReputationSystem rs = new ReputationSystem();
         market.setRs(rs);
@@ -159,17 +166,17 @@ public class Simulator {
         List<Cloudlet> listaCloudletRecibidos = new ArrayList<Cloudlet>();
         List<Cloudlet> listaCloudlet = new ArrayList<Cloudlet>();
         List<Broker> listaAgenteBroker = new ArrayList<Broker>();
-        for(Broker agenteBroker : Simulator.market.brokerList){
+        for(Broker agenteBroker : Simulator.market.getBrokerList()){
             listaCloudletRecibidos.addAll(agenteBroker.getCloudletReceivedList());
             listaCloudlet.addAll(agenteBroker.getCloudletList());
           }
-            Util.printCloudletList(listaCloudletRecibidos,listaAgenteBroker);
-            if(listaCloudlet.size()>0)
-            {
-                Util.printCloudletList(listaCloudlet, listaAgenteBroker);  
-            }
-            //Print the debt of each user to each datacenter
-            Util.printSellerAgentInfo(Broker.getProviderList());/*allSellerAgents*/;
+        UtilPrint.printCloudletList(listaCloudletRecibidos,listaAgenteBroker);
+        if(listaCloudlet.size()>0)
+        {
+            UtilPrint.printCloudletList(listaCloudlet, listaAgenteBroker);  
+        }
+        //Print the debt of each user to each datacenter
+        UtilPrint.printSellerAgentInfo(Broker.getProviderList());/*allSellerAgents*/;
     }
 }
 
